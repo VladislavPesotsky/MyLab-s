@@ -1,0 +1,24 @@
+body{
+    margin: 0 auto;
+}
+.main{
+    width: 600px;
+    float: left;
+    display: block; 
+    margin:10px;
+}
+.algoritm_box{
+    display: block;
+    width: auto;
+    
+    float: right;
+}
+.example_box{
+    width: 600px;
+    float: inherit;
+    margin-left: 10px;
+}
+span{
+    font-family: monospace;
+    font-size: 14px;
+}

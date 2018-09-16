@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js.js" defer></script>
+    <link rel="stylesheet" href="css.css" />
+</head>
+<body>
+    <div class="main">
+     <p>Программная реализация исследования функции f(x)=2x<sup>2</sup>-12x методом дихотомии</p>
+        <p>Необходимо задать значения коэфициентов <span>a,b</span> отражающих начальный интервал <span>L[a,b]</span>,значение <span>l<sub>0</sub></span> и ограничения функции <i>E</i></p>
+        <p>После ввода данных и нажатия кнопки "выполнить", будет выполнен расчет минимального интервала, точки минимума и глобального минимума функции.</p>
+     <p>Введите значение коэффициента a<sub>1</sub></p>
+     <input id="a" type="number"><hr>
+     <p>Введите значение коэффициента b<sub>1</sub></p>
+     <input id="b" type="number"><hr>
+     <p>Введите значение коэффициента l<sub>0</sub></p>
+     <input id="l" type="number"><hr>
+     <p>Введите начальное ограничение переменной <i>E</i></p>
+     <input id="e1" type="number"><hr>
+     <p>Введите конечное ограничение переменной <i>E</i></p>
+     <input id="e2" type="number"><hr>
+     <button onclick="action()">Выполнить</button>
+     </div>
+    <div class="algoritm_box">
+        <button onclick="algoritm()">Показать алгоритм действий </button>
+        <div id="algoritm" style="visibility: hidden;">
+            <h3>Алгоритм</h3>
+           <p>Шаг 1. Задать</p>
+           <p><span>L<sub>1</sub> = [a<sub>1</sub>,b<sub>1</sub>],</span></p>
+           <p><span>l<sub>0</sub>&gt 0, <i>e</i>&gt 0,</span></p>
+           <p>Шаг 2. Вычислить</p>
+           <p><span>y<sub>n</sub> = (a<sub>n</sub> + b<sub>n</sub> - l<sub>0</sub>)/2;</span></p>
+           <p><span>z<sub>n</sub> = (a<sub>n</sub> + b<sub>n</sub> + l<sub>0</sub>)/2;</span></p>
+           <p><span>f(y), f(z)</span></p>
+           <p>Шаг 3. Сравнить <span>f(y), и f(z)</span></p>
+           <p>Если <span>f(y) &gt f(z)</span> то</p>
+           <p><span>a<sub>n+1</sub> = y<sub>n</sub>;b<sub>n+1</sub> = b<sub>n</sub></span></p>
+           <p>Если <span>f(y) &lt f(z)</span> то</p>
+           <p><span>a<sub>n+1</sub> = a<sub>n</sub>;b<sub>n+1</sub> = z<sub>n</sub></span></p>
+           <p>Шаг 4. Проверка условия окончания </p>
+           <p><span>|L<sub>n+1</sub>| = |b<sub>n+1</sub>-a<sub>n+1</sub>|</span></p>
+           <p>Если <span>|L<sub>n+1</sub>|&gt <i>e</i></span> то поиск продолжается, возвращаемся к шагу 2.</p>
+           <p>Если <span>|L<sub>n+1</sub>|&lt <i>e</i></span> то поиск завершен.Мы нашли интервал минимума и теперь рассчитываем точку минимума по формуле: </p>
+           <p><span>x<sup>*</sup> = (a<sub>n+1</sub>+b<sub>n+1</sub>)/2</span></p>
+            </div>
+             </div>
+             <div class="example_box">
+      <button onclick="example()">Посмотреть пример</button>
+      <div id="example" style="visibility: hidden;">
+        <p>Исследуемая функция:<span>f(x) = 2x<sup>2</sup>-12x</span></p> <p>Начальные условия:<span> l<sub>0</sub> = 0.2; 0.1 &lt <i>E</i> &lt 1</span></p>
+         <p>Начальный интервал неопределенности: <span>L=[a<sub>1</sub>;b<sub>1</sub>]</span> при <span>a<sub>1</sub> = 0; b<sub>1</sub> = 10;</span></p>
+         <p>1) Вычисляем точки: </p>
+         <p><span>y<sub>1</sub> = (a<sub>1</sub> + b<sub>1</sub> - l<sub>0</sub>)/2 = 4.9;</span></p>
+         <p><span>z<sub>1</sub> = (a<sub>1</sub> + b<sub>1</sub> + l<sub>0</sub>)/2 = 5.1;</span></p>
+         <p>2) Вычисляем значение функций в этих точках: </p>
+         <p>  <span>f(y) = -10.78; f(z) = -9.18;</span></p>
+         <p>Так как <span>f(z) &gt f(y)</span>, то <span>a<sub>2</sub> = a<sub>1</sub> = 0, b<sub>2</sub> = z<sub>1</sub> = 5.1;</span></p>
+         <p>Получаем новый интервал <span>L[0, 5.1]</span></p>
+         <p>3) Проверка условия окончания: </p>
+         <p><span>|L|=|b-a|=5.1;</span></p>
+         <p>Условие остановки не выполняется, следовательно возвращаемся к пункту 1).</p>
+         <p>1.2) Вычисляем точки: </p>
+         <p><span>y<sub>2</sub> = (a<sub>2</sub> + b<sub>2</sub> - l<sub>0</sub>)/2 = 2.45;</span></p>
+         <p><span>z<sub>2</sub> = (a<sub>2</sub> + b<sub>2</sub> + l<sub>0</sub>)/2 = 2.65;</span></p>
+         <p>2.2) Вычисляем значение функций в этих точках: </p>
+         <p>  <span>f(y) = -17.395; f(z) = -17.775;</span></p>
+         <p>Так как <span>f(z) &lt f(y)</span>, то <span>a<sub>3</sub> = y<sub>2</sub> = 2.45, b<sub>3</sub> = b<sub>2</sub> = 5.1;</span></p>
+         <p>Получаем новый интервал <span>L[2.45, 5.1]</span></p>
+         <p>3.2) Проверка условия окончания: </p>
+         <p><span>|L|=|b-a|=2.65;</span></p>
+         <p>Условие остановки не выполняется, следовательно возвращаемся к пункту 1).</p>
+         <p>1.3) Вычисляем точки: </p>
+         <p><span>y<sub>3</sub> = (a<sub>3</sub> + b<sub>3</sub> - l<sub>0</sub>)/2 = 3.67;</span></p>
+         <p><span>z<sub>3</sub> = (a<sub>3</sub> + b<sub>3</sub> + l<sub>0</sub>)/2 = 3.87;</span></p>
+         <p>2.3) Вычисляем значение функций в этих точках: </p>
+         <p>  <span>f(y) = -17.089; f(z) = -16.469;</span></p>
+         <p>Так как <span>f(z) &gt f(y)</span>, то <span>a<sub>4</sub> = a<sub>3</sub> = 2.45, b<sub>4</sub> = z<sub>3</sub> = 3.87;</span></p>
+         <p>Получаем новый интервал <span>L[2.45, 3.87]</span></p>
+         <p>3.3) Проверка условия окончания: </p>
+         <p><span>|L|=|b-a|=1.425;</span></p>
+         <p>Условие остановки не выполняется, следовательно возвращаемся к пункту 1).</p>
+         <p>1.4) Вычисляем точки: </p>
+         <p><span>y<sub>4</sub> = (a<sub>4</sub> + b<sub>4</sub> - l<sub>0</sub>)/2 = 3.06;</span></p>
+         <p><span>z<sub>4</sub> = (a<sub>4</sub> + b<sub>4</sub> + l<sub>0</sub>)/2 = 3.26;</span></p>
+         <p>2.4) Вычисляем значение функций в этих точках: </p>
+         <p>  <span>f(y) = -17.992; f(z) = -17.862;</span></p>
+          <p>Так как <span>f(z) &gt f(y)</span>, то <span>a<sub>5</sub> = a<sub>4</sub> = 2.45, b<sub>5</sub> = z<sub>4</sub> = 3.26;</span></p>
+          <p>Получаем новый интервал <span>L[2.45, 3.26]</span></p>
+          <p>3.4) Проверка условия окончания: </p>
+         <p><span>|L|=|b-a|=0.81;</span></p>
+         <p>Условие выполненно, так как интервал соответствует ограничениям.</p>
+         <p>Соответсвенно интервал минимума: <span>L[2.45, 3.26]</span></p>
+         <p>Точка минимума: </p>
+         <p><span>x<sub>*</sub> = (2.45+3.26)/2 = 2.85</span></p>
+         <p>Глобальный минимум: <span>f(x<sub>*</sub>)=-17.95</span></p>
+         </div>
+
+     </div>
+</body>
+</html>
